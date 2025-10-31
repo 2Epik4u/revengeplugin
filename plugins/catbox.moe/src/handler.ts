@@ -66,10 +66,6 @@ export function patchUploader(): () => void {
     const size = file?.preCompressionSize ?? 0;
     const readableSize = formatBytes(size);
 
-    if (size > 1024 * 1024 * 1024) {
-      showToast("❌ File too large (max 1 GB)");
-      return null;
-    }
 
     const alwaysUpload = !!storage.alwaysUpload;
     const insert = !!storage.insert;
@@ -91,13 +87,9 @@ export function patchUploader(): () => void {
     if (isNaN(parsed)) parsed = 1;
     const duration = `${roundDuration(parsed)}h`;
 
-    const tooBigForCatbox = size > 200 * 1024 * 1024;
-
     let useHost: "catbox" | "litterbox" | "pomf" = "catbox";
     if (commandTriggered) {
       useHost = "litterbox";
-    } else if (tooBigForCatbox) {
-      useHost = selectedHost === "catbox" ? "litterbox" : selectedHost;
     } else {
       useHost = selectedHost;
     }

@@ -60,8 +60,8 @@ export default function Settings() {
 
         <TableRowGroup title="Default File Hoster">
           <TableSwitchRow
-            label="Catbox"
-            subLabel="https://catbox.moe/"
+            label="2epik4u.lol"
+            subLabel="https://upload.2epik4u.lol/"
             value={selectedHost === "catbox"}
             onValueChange={() => setHost("catbox")}
           />
@@ -141,10 +141,10 @@ export default function Settings() {
           </Stack>
         </TableRowGroup>
 
-        <TableRowGroup title="Catbox Userhash">
+        <TableRowGroup title="2epik4u.lol Password">
           <Stack spacing={4}>
             <TextInput
-              placeholder="Userhash"
+              placeholder="password"
               value={get("userhash")}
               onChange={(v) => {
                 set("userhash", v);

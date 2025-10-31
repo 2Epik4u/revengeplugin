@@ -15,15 +15,16 @@ export async function uploadToCatbox(media: any): Promise<string | null> {
     const userhash = storage.userhash?.trim();
 
     const formData = new FormData();
-    formData.append("reqtype", "fileupload");
-    if (userhash) formData.append("userhash", userhash);
-    formData.append("fileToUpload", {
+
+    if (userhash) formData.append("pw", userhash);
+    // upload file
+    formData.append("f", {
       uri: fileUri,
       name: filename,
       type: media.mimeType ?? "application/octet-stream",
     } as any);
 
-    const response = await fetch("https://catbox.moe/user/api.php", {
+    const response = await fetch("https://upload.2epik4u.lol/?want=url", {
       method: "POST",
       body: formData,
     });
